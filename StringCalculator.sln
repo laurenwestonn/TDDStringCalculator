@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator", "..\..\..\Users\Cantarus\source\repos\StringCalculator\StringCalculator\StringCalculator.csproj", "{4A64E555-15F2-4294-BD11-543F5EBEA11B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.Tests", "..\..\..\Users\Cantarus\source\repos\StringCalculator\StringCalculator.test\StringCalculator.Tests.csproj", "{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A64E555-15F2-4294-BD11-543F5EBEA11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A64E555-15F2-4294-BD11-543F5EBEA11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A64E555-15F2-4294-BD11-543F5EBEA11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A64E555-15F2-4294-BD11-543F5EBEA11B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61882733-75AA-4F99-9672-5946841AC3F8}
+	EndGlobalSection
+EndGlobal

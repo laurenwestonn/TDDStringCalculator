@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StringCalculator
 {
@@ -10,21 +11,12 @@ namespace StringCalculator
             if (input == "")
                 return 0;
 
-            if (input.Length == 1)
-            {
-                int.TryParse(input, out int number);
-                if (number < 0)
-                {
-                    string message = "Negatives not allowed: {0}";
-                    message = string.Format(message, number);
-                    throw new ArgumentOutOfRangeException(message);
-                }
-                return int.Parse(input);
-            }
             char[] delimiters = new char[] { ',', '\n' };
             string values = input;
+            int sum = 0;
 
-            if("" + input[0] + input[1] == "//")
+            // Check delimiters
+            if (input[0] == '/' && input[1] == '/')
             { 
                 string[] lines = input.Split('\n');
                 var firstLine = lines[0];
@@ -34,12 +26,26 @@ namespace StringCalculator
                 delimiters = new char[] { delimiters[0], delimiters[1], delimiter };
             }
 
-            string[] numbers = values.Split(delimiters);
+            string[] numbersString = values.Split(delimiters);
 
-            int sum = 0;
-            foreach(string number in numbers)
+            List<int> invalidNumbers = new List<int>();
+            foreach(string numberString in numbersString)
             {
-                sum += int.Parse(number);
+                int.TryParse(numberString, out int number);
+                
+                if (number < 0)
+                {
+                    invalidNumbers.Add(number);
+                }
+                sum += number;
+            }
+
+            if (invalidNumbers.Any())
+            {
+                string message = "Negatives not allowed: {0}";
+                string invalidNumbersString = string.Join(',', invalidNumbers);
+                message = string.Format(message, invalidNumbersString);
+                throw new ArgumentOutOfRangeException(message);
             }
             return sum;
         }

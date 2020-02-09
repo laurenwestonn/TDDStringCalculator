@@ -21,7 +21,6 @@ namespace StringCalculator.Tests
 
         [Theory]
         [InlineData("1", 1)]
-        [InlineData("-1", -1)]
         [InlineData("0", 0)]
         public void Add_OneNumber_ReturnsNumber(string input, int expected)
         {
@@ -71,13 +70,13 @@ namespace StringCalculator.Tests
         [Theory]
         [InlineData("-1", "Negatives not allowed: -1")]
         [InlineData("1,-2", "Negatives not allowed: -2")]
-        [InlineData("1,-2, -3", "Negatives not allowed: -2, -3")]
+        [InlineData("1,-2, -3", "Negatives not allowed: -2,-3")]
         public void Add_Negatives_ThrowException(string input, string expected)
         {
             var calc = new Calculator();
             var ex = Assert.Throws<ArgumentOutOfRangeException>(() => calc.Add(input));
 
-            ex.Message.Should().Be(expected);
+            ex.ParamName.Should().Be(expected);
         }
     }
 }

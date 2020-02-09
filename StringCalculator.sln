@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator", "..\..\..\Users\Cantarus\source\repos\StringCalculator\StringCalculator\StringCalculator.csproj", "{4A64E555-15F2-4294-BD11-543F5EBEA11B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator", "..\..\..\SourceControl\Personal\TDDStringCalculator\StringCalculator\StringCalculator.csproj", "{4A64E555-15F2-4294-BD11-543F5EBEA11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.Tests", "..\..\..\Users\Cantarus\source\repos\StringCalculator\StringCalculator.test\StringCalculator.Tests.csproj", "{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.Tests", "..\..\..\SourceControl\Personal\TDDStringCalculator\StringCalculator.test\StringCalculator.Tests.csproj", "{CAF3A1A4-E675-460C-9230-2E8DA282C4F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

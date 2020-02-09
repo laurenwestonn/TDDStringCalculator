@@ -28,26 +28,20 @@ namespace StringCalculator
 
             string[] numbersString = values.Split(delimiters);
 
-            List<int> invalidNumbers = new List<int>();
-            foreach(string numberString in numbersString)
-            {
-                int.TryParse(numberString, out int number);
-                
-                if (number < 0)
-                {
-                    invalidNumbers.Add(number);
-                }
-                sum += number;
-            }
+
+            List<int> numbers = numbersString
+                .Select(n => int.Parse(n))
+                .ToList();
+            List<int> invalidNumbers = numbers.Where(n => n < 0).ToList();
 
             if (invalidNumbers.Any())
             {
-                string message = "Negatives not allowed: {0}";
                 string invalidNumbersString = string.Join(',', invalidNumbers);
-                message = string.Format(message, invalidNumbersString);
-                throw new ArgumentOutOfRangeException(message);
+                string message = "Negatives not allowed: {0}";
+                throw new ArgumentOutOfRangeException(string.Format(message, invalidNumbersString));
             }
-            return sum;
+
+            return numbers.Sum();
         }
     }
 

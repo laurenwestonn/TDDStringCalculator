@@ -58,25 +58,32 @@ namespace StringCalculator.Tests
             calc.Add(input).Should().Be(expected);
         }
 
-        [Theory]
-        [InlineData("//;\n1;2", 3)]
-        [InlineData("//~\n1~2~3", 6)]
-        public void Add_SpecifyDelimiter(string input, int expected)
+        [Fact]
+        public void Add_SpecifyDelimiter()
         {
-            var calc = new Calculator();
-            calc.Add(input).Should().Be(expected);
+            "//;\n1;2".ShouldCalculateTo(3);
+            "//~\n1~2~3".ShouldCalculateTo(6);
         }
 
         [Theory]
         [InlineData("-1", "Negatives not allowed: -1")]
         [InlineData("1,-2", "Negatives not allowed: -2")]
-        [InlineData("1,-2, -3", "Negatives not allowed: -2,-3")]
+        [InlineData("1,-2,-3", "Negatives not allowed: -2,-3")]
         public void Add_Negatives_ThrowException(string input, string expected)
         {
             var calc = new Calculator();
             var ex = Assert.Throws<ArgumentOutOfRangeException>(() => calc.Add(input));
 
             ex.ParamName.Should().Be(expected);
+        }
+    }
+
+    internal static class TestHelper
+    {
+        public static void ShouldCalculateTo(this string input, int expected)
+        {
+            var calc = new Calculator();
+            Assert.Equal(expected, calc.Add(input));
         }
     }
 }

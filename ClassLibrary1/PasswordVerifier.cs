@@ -64,4 +64,13 @@ namespace PasswordVerifier
             return input.ToUpper() != input;
         }
     }
+
+    public class AtLeastOneNumberVerifier : IVerifier
+    {
+        public bool Verify(string input)
+        {
+            char[] chars = input.ToCharArray();
+            return chars.Any(ch => Char.IsNumber(ch));
+        }
+    }
 }

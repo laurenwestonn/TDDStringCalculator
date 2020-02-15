@@ -33,5 +33,18 @@ namespace PasswordVerifier.Test
         {
             Assert.AreEqual(new AtLeastOneUpperCaseVerifier().Verify(password), expected);
         }
+
+        [TestMethod]
+        [DataRow("A", false)]
+        [DataRow("1A", false)]
+        [DataRow("1A1", false)]
+        [DataRow("AaA", true)]
+        [DataRow("1w1", true)]
+        [DataRow("1Ww", true)]
+        [DataRow("w", true)]
+        public void AtLeastOneLowerCase(string password, bool expected)
+        {
+            Assert.AreEqual(new AtLeastOneUpperCaseVerifier().Verify(password), expected);
+        }
     }
 }

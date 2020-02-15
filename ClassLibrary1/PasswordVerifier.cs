@@ -10,9 +10,7 @@ namespace PasswordVerifier
     {
         public static bool Verify(string password)
         {
-            if (password == null)
-                return false;
-            if (password.Length > 8)
+            if (password != null && password.Length > 8)
                 return true;
             else
                 return false;

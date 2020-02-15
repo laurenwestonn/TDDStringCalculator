@@ -46,5 +46,17 @@ namespace PasswordVerifier.Test
         {
             Assert.AreEqual(new AtLeastOneLowerCaseVerifier().Verify(password), expected);
         }
+
+        [TestMethod]
+        [DataRow("", false)]
+        [DataRow("abc", false)]
+        [DataRow("abc,./", false)]
+        [DataRow("0", true)]
+        [DataRow("0a", true)]
+        [DataRow("a0a", true)]
+        public void AtLeastOneNumber(string password, bool expected)
+        {
+            Assert.AreEqual(new AtLeastOneNumberVerifier().Verify(password), expected);
+        }
     }
 }

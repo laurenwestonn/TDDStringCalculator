@@ -62,14 +62,45 @@ namespace PasswordVerifier.Test
         [TestMethod]
         [DataRow(null, false)]
         [DataRow("", true)]
-        public void PasswordVerifier_UsesOneVerifier(string password, bool expected)
+        public void PasswordVerifier_CanUseOneVerifier(string password, bool expected)
         {
             Assert.AreEqual(
                 new PasswordVerifier(
                     new CombineVerifiers(
                         new IVerifier[] { new NotNullVerifier() }
                     )
-                ).Verify(password), 
+                ).Verify(password),
+                expected
+            );
+        }
+
+        [TestMethod]
+        [DataRow("12345678", false)]
+        [DataRow(null, false)]
+        [DataRow("123kjh", false)]
+        [DataRow("123kj33hffgfg", false)]
+        [DataRow("A", false)]
+        [DataRow("1A", false)]
+        [DataRow("1A1", false)]
+        [DataRow("", false)]
+        [DataRow("abc", false)]
+        [DataRow("abc,./", false)]
+        [DataRow("1aA456789", true)]
+        [DataRow("12345AAAa", true)]
+        public void PasswordVerifier_CanUseManyVerifiers(string password, bool expected)
+        {
+            Assert.AreEqual(
+                new PasswordVerifier(
+                    new CombineVerifiers(
+                        new IVerifier[] {
+                            new NoLongerThanVerifier(8),
+                            new NotNullVerifier(),
+                            new AtLeastOneLowerCaseVerifier(),
+                            new AtLeastOneUpperCaseVerifier(),
+                            new AtLeastOneNumberVerifier()
+                        }
+                    )
+                ).Verify(password),
                 expected
             );
         }

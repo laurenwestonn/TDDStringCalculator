@@ -13,5 +13,12 @@ namespace PasswordVerifier.Test
         {
             Assert.AreEqual(PasswordVerifier.Verify(password), expected);
         }
+
+        [TestMethod]
+        [DataRow(null, false)]
+        public void MustNotBeNull(string password, bool expected)
+        {
+            Assert.AreEqual(PasswordVerifier.Verify(password), expected);
+        }
     }
 }

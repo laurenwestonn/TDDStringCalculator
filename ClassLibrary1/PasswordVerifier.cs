@@ -49,11 +49,19 @@ namespace PasswordVerifier
         }
     }
 
-    public class AtLeastOneUpperCaseVerifier: IVerifier
+    public class AtLeastOneUpperCaseVerifier : IVerifier
     {
         public bool Verify(string input)
         {
             return input.ToLower() != input;
+        }
+    }
+
+    public class AtLeastOneLowerCaseVerifier : IVerifier
+    {
+        public bool Verify(string input)
+        {
+            return input.ToUpper() != input;
         }
     }
 }

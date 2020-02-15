@@ -58,5 +58,24 @@ namespace PasswordVerifier.Test
         {
             Assert.AreEqual(new AtLeastOneNumberVerifier().Verify(password), expected);
         }
+
+        [TestMethod]
+        [DataRow(null, false)]
+        [DataRow("", true)]
+        public void PasswordVerifier_UsesOneVerifier(string password, bool expected)
+        {
+            Assert.AreEqual(
+                new PasswordVerifier(
+                    new CombineVerifiers(
+                        new IVerifier[] { new NotNullVerifier() }
+                    )
+                ).Verify(password), 
+                expected
+            );
+        }
+
+
+
+
     }
 }

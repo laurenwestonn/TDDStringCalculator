@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PasswordVerifier
 {
@@ -26,6 +23,25 @@ namespace PasswordVerifier
     public interface IVerifier
     {
         bool Verify(string input);
+    }
+
+    public class CombineVerifiers: IVerifier
+    {
+        readonly IVerifier[] verifiers;
+        public CombineVerifiers(IVerifier[] _verifiers)
+        {
+            verifiers = _verifiers;
+        }
+
+        public bool Verify(string input)
+        {
+            foreach(IVerifier verifier in verifiers)
+            {
+                if (!verifier.Verify(input))
+                    return false;
+            }
+            return true;
+        }
     }
 
     public class NoLongerThanVerifier: IVerifier

@@ -53,7 +53,7 @@ namespace PasswordVerifier
         }
         public bool Verify(string input)
         {
-            return input.Length > length;
+            return input != null && input.Length > length;
         }
     }
 
@@ -69,7 +69,7 @@ namespace PasswordVerifier
     {
         public bool Verify(string input)
         {
-            return input.ToLower() != input;
+            return input != null && input.ToLower() != input;
         }
     }
 
@@ -77,7 +77,7 @@ namespace PasswordVerifier
     {
         public bool Verify(string input)
         {
-            return input.ToUpper() != input;
+            return input != null && input.ToUpper() != input;
         }
     }
 
@@ -85,8 +85,10 @@ namespace PasswordVerifier
     {
         public bool Verify(string input)
         {
+            if (input == null)
+                return false;
             char[] chars = input.ToCharArray();
-            return chars.Any(ch => Char.IsNumber(ch));
+            return chars.Any(ch => char.IsNumber(ch));
         }
     }
 }

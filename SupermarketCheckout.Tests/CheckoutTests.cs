@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SupermarketCheckout.Tests
 {
@@ -24,25 +25,23 @@ namespace SupermarketCheckout.Tests
         }
 
         [TestMethod]
-        public void AddingPricingRule_GetsCorrectPrice()
+        [DataRow(new string[] { "A" }, "A", 15, 15)]
+        [DataRow(new string[] { "A", "A", "A" }, "A", 10, 30)]
+        public void AddingPricingRule_GetsCorrectPrice(string[] items, string itemName, int itemPrice, int expectedPrice)
         {
             Checkout c = new Checkout();
-            Dictionary<string, int> pricingRules = new Dictionary<string, int>
-            {
-                { "A", 15 }
-            };
-            c.ApplyPricingRules(pricingRules);
-            c.Scan("A");
-            Assert.AreEqual(15, c.Total);
 
-            pricingRules = new Dictionary<string, int>
+            c.ApplyPricingRules(new Dictionary<string, int>
+                {
+                    { itemName, itemPrice }
+                }
+            );
+            
+            foreach(string item in items)
             {
-                { "A", 10 }
-            };
-            c.ApplyPricingRules(pricingRules);
-            c.Scan("A");
-            Assert.AreEqual(10, c.Total);
-
+                c.Scan(item);
+            }
+            Assert.AreEqual(expectedPrice, c.Total);
         }
     }
 }

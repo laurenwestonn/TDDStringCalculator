@@ -146,16 +146,19 @@ namespace PasswordVerifier.Test
             Assert.AreEqual(
                 expected,
                 new PasswordVerifier(
-                    new AtLeastVerifier(
-                        new IVerifier[] {
-                            new LongerThanVerifier(8),
-                            new NotNullVerifier(),
-                            new AtLeastOneLowerCaseVerifier(),
-                            new AtLeastOneUpperCaseVerifier(),
-                            new AtLeastOneNumberVerifier()
-                        },
-                        3
-                    )
+                    new CombineVerifiers(new IVerifier[] {
+                        new AtLeastOneLowerCaseVerifier(),
+                        new AtLeastVerifier(
+                            new IVerifier[] {
+                                new LongerThanVerifier(8),
+                                new NotNullVerifier(),
+                                new AtLeastOneUpperCaseVerifier(),
+                                new AtLeastOneNumberVerifier()
+                            },
+                            2
+                        )
+
+                    })
                 ).Verify(password)
             );
 

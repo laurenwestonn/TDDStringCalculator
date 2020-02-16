@@ -46,8 +46,8 @@ namespace PasswordVerifier
 
     public class AtLeastVerifier: IVerifier
     {
-        private int minToAccept;
-        private IVerifier[] verifiers;
+        private readonly int minToAccept;
+        private readonly IVerifier[] verifiers;
         public AtLeastVerifier(IVerifier[] _verifiers, int _min)
         {
             verifiers = _verifiers;
@@ -56,21 +56,8 @@ namespace PasswordVerifier
 
         public bool Verify(string input)
         {
-            int succeededCount = 0;
-            foreach (IVerifier verifier in verifiers)
-            {
-                if (verifier.Verify(input))
-                {
-                    succeededCount++;
-                }
-            }
-            if (succeededCount >= minToAccept)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            int succeededCount = verifiers.Count(ver => ver.Verify(input));
+            return succeededCount >= minToAccept;
         }
     }
 

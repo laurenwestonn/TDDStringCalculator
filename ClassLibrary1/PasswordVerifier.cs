@@ -102,10 +102,7 @@ namespace PasswordVerifier
     {
         public bool Verify(string input)
         {
-            if (input == null)
-                return false;
-            char[] chars = input.ToCharArray();
-            return chars.Any(ch => char.IsNumber(ch));
+            return input != null && input.Any(ch => char.IsNumber(ch));
         }
     }
 }

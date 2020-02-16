@@ -10,7 +10,7 @@ namespace SupermarketCheckout.Tests
         {
             Checkout c = new Checkout();
             c.Scan("A");
-            c.Total = 15;
+            Assert.AreEqual(15, c.Total);
         }
     }
 }

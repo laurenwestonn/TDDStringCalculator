@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordVerifier.Test", "Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordVerifier", "ClassLibrary1\PasswordVerifier.csproj", "{EB525DB6-517D-44E6-A5A0-B50F29A20AC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketCheckout", "SupermarketCheckout\SupermarketCheckout.csproj", "{BBED6639-44CE-4E65-889A-8B647BFCB9BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketCheckout.Tests", "SupermarketCheckout.Tests\SupermarketCheckout.Tests.csproj", "{1654565C-4E0D-45E4-9018-0D8616368604}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{EB525DB6-517D-44E6-A5A0-B50F29A20AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB525DB6-517D-44E6-A5A0-B50F29A20AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB525DB6-517D-44E6-A5A0-B50F29A20AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBED6639-44CE-4E65-889A-8B647BFCB9BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBED6639-44CE-4E65-889A-8B647BFCB9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBED6639-44CE-4E65-889A-8B647BFCB9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBED6639-44CE-4E65-889A-8B647BFCB9BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1654565C-4E0D-45E4-9018-0D8616368604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1654565C-4E0D-45E4-9018-0D8616368604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1654565C-4E0D-45E4-9018-0D8616368604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1654565C-4E0D-45E4-9018-0D8616368604}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

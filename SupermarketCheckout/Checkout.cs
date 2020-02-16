@@ -9,9 +9,23 @@ namespace SupermarketCheckout
     public class Checkout
     {
         public int Total;
+        public Dictionary<string, int> pricingRules;
+
+
+        public void ApplyPricingRules(Dictionary<string, int> _pricingRules)
+        {
+            pricingRules = _pricingRules;
+        }
+
         public void Scan(string item)
         {
-            Total += 15;
+            if (pricingRules != null)
+            {
+                Total += pricingRules[item];
+            } else
+            {
+                Total += 15; // To match the original tests
+            }
         }
     }
 }

@@ -90,6 +90,7 @@ namespace PasswordVerifier.Test
         public void PasswordVerifier_CanUseManyVerifiers(string password, bool expected)
         {
             Assert.AreEqual(
+                expected,
                 new PasswordVerifier(
                     new CombineVerifiers(
                         new IVerifier[] {
@@ -100,8 +101,7 @@ namespace PasswordVerifier.Test
                             new AtLeastOneNumberVerifier()
                         }
                     )
-                ).Verify(password),
-                expected
+                ).Verify(password)
             );
         }
 
@@ -109,16 +109,17 @@ namespace PasswordVerifier.Test
         [DataRow("aA", true)]
         [DataRow("a1", true)]
         [DataRow("A1", true)]
-        [DataRow("12345678a", true)]
-        [DataRow("12345678A", true)]
+        [DataRow("123456789", true)]
+        [DataRow("1234567a", true)]
         [DataRow("A", false)]
         [DataRow("a", false)]
         [DataRow("1", false)]
-        [DataRow("1234567a", false)]
-        [DataRow("1234567A", false)]
+        [DataRow("1234567", false)]
+        [DataRow("1234567", false)]
         public void PasswordVerifier_SucceedsForAtLeast3Rules(string password, bool expected)
         {
             Assert.AreEqual(
+                expected,
                 new PasswordVerifier(
                     new AtLeastVerifier(
                         new IVerifier[] {
@@ -130,8 +131,7 @@ namespace PasswordVerifier.Test
                         },
                         3
                     )
-                ).Verify(password),
-                expected
+                ).Verify(password)
             );
 
         }

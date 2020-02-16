@@ -11,7 +11,7 @@ namespace PasswordVerifier.Test
         [DataRow("123456789", true)]
         public void MustBeLargerThan8Chars(string password, bool expected)
         {
-            Assert.AreEqual(new NoLongerThanVerifier(8).Verify(password), expected);
+            Assert.AreEqual(new LongerThanVerifier(8).Verify(password), expected);
         }
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace PasswordVerifier.Test
                 new PasswordVerifier(
                     new CombineVerifiers(
                         new IVerifier[] {
-                            new NoLongerThanVerifier(8),
+                            new LongerThanVerifier(8),
                             new NotNullVerifier(),
                             new AtLeastOneLowerCaseVerifier(),
                             new AtLeastOneUpperCaseVerifier(),
@@ -103,6 +103,37 @@ namespace PasswordVerifier.Test
                 ).Verify(password),
                 expected
             );
+        }
+
+        [TestMethod]
+        [DataRow("aA", true)]
+        [DataRow("a1", true)]
+        [DataRow("A1", true)]
+        [DataRow("12345678a", true)]
+        [DataRow("12345678A", true)]
+        [DataRow("A", false)]
+        [DataRow("a", false)]
+        [DataRow("1", false)]
+        [DataRow("1234567a", false)]
+        [DataRow("1234567A", false)]
+        public void PasswordVerifier_SucceedsForAtLeast3Rules(string password, bool expected)
+        {
+            Assert.AreEqual(
+                new PasswordVerifier(
+                    new AtLeastVerifier(
+                        new IVerifier[] {
+                            new LongerThanVerifier(8),
+                            new NotNullVerifier(),
+                            new AtLeastOneLowerCaseVerifier(),
+                            new AtLeastOneUpperCaseVerifier(),
+                            new AtLeastOneNumberVerifier()
+                        },
+                        3
+                    )
+                ).Verify(password),
+                expected
+            );
+
         }
 
 

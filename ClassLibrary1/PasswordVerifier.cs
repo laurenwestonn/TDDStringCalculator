@@ -44,10 +44,40 @@ namespace PasswordVerifier
         }
     }
 
-    public class NoLongerThanVerifier: IVerifier
+    public class AtLeastVerifier: IVerifier
+    {
+        private int minToAccept;
+        private IVerifier[] verifiers;
+        public AtLeastVerifier(IVerifier[] _verifiers, int _min)
+        {
+            verifiers = _verifiers;
+            minToAccept = _min;
+        }
+
+        public bool Verify(string input)
+        {
+            int succeededCount = 0;
+            foreach (IVerifier verifier in verifiers)
+            {
+                if (verifier.Verify(input))
+                {
+                    succeededCount++;
+                }
+            }
+            if (succeededCount >= minToAccept)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+    }
+
+    public class LongerThanVerifier: IVerifier
     {
         readonly int length;
-        public NoLongerThanVerifier(int _length)
+        public LongerThanVerifier(int _length)
         {
             length = _length;
         }

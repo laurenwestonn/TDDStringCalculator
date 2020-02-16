@@ -35,12 +35,7 @@ namespace PasswordVerifier
 
         public bool Verify(string input)
         {
-            foreach(IVerifier verifier in verifiers)
-            {
-                if (!verifier.Verify(input))
-                    return false;
-            }
-            return true;
+            return !verifiers.Any(verifier => !verifier.Verify(input));
         }
     }
 

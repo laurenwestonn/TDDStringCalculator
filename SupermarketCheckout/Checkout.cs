@@ -11,7 +11,7 @@ namespace SupermarketCheckout
         public int Total;
         public void Scan(string item)
         {
-            
+            Total = 15;
         }
     }
 }

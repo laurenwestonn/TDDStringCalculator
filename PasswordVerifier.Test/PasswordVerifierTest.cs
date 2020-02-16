@@ -136,6 +136,30 @@ namespace PasswordVerifier.Test
 
         }
 
+        [TestMethod]
+        [DataRow("12345678A", false)]
+        [DataRow("12345678a", true)]
+        [DataRow("a1", true)]
+        [DataRow("A1", false)]
+        public void PasswordVerifier_FailsIfNoLowercase(string password, bool expected)
+        {
+            Assert.AreEqual(
+                expected,
+                new PasswordVerifier(
+                    new AtLeastVerifier(
+                        new IVerifier[] {
+                            new LongerThanVerifier(8),
+                            new NotNullVerifier(),
+                            new AtLeastOneLowerCaseVerifier(),
+                            new AtLeastOneUpperCaseVerifier(),
+                            new AtLeastOneNumberVerifier()
+                        },
+                        3
+                    )
+                ).Verify(password)
+            );
+
+        }
 
     }
 }

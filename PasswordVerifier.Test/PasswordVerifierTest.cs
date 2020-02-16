@@ -107,7 +107,6 @@ namespace PasswordVerifier.Test
 
         [TestMethod]
         [DataRow("1234567")]
-        [ExpectedException(typeof(ArgumentException))]
         public void TooShort_Exception(string password)
         {
             new PasswordVerifier(

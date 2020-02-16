@@ -105,23 +105,6 @@ namespace PasswordVerifier.Test
             );
         }
 
-        [TestMethod]
-        [DataRow("1234567")]
-        public void TooShort_Exception(string password)
-        {
-            new PasswordVerifier(
-                new CombineVerifiers(
-                    new IVerifier[] {
-                        new NoLongerThanVerifier(8),
-                        new NotNullVerifier(),
-                        new AtLeastOneLowerCaseVerifier(),
-                        new AtLeastOneUpperCaseVerifier(),
-                        new AtLeastOneNumberVerifier()
-                    }
-                )
-            ).Verify(password);
-        }
-
 
     }
 }
